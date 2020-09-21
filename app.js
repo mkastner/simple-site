@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const contactMailer = require('./lib/mailer/contact');
 const { validationResult } = require('express-validator');
 const contactFormValidation = require('./lib/utils/contact-form-validation');
 const path = require('path');
@@ -45,14 +46,20 @@ app.get('/kontakt', (req, res) => {
 });
 
 
-app.post('/kontakt', contactFormValidation, (req, res) => {
-  log.info('req.body', req.body);
-  const { errors } = validationResult(req);
-  log.info('validation errors', errors);
-  if (errors.length) {
-    return res.render('forms/contact', { form: req.data, menuItems, reqPath: req.path, errors });
+app.post('/kontakt', contactFormValidation, async (req, res) => {
+  try {
+    log.info('req.body', req.body);
+    const { errors } = validationResult(req);
+    log.info('validation errors', errors);
+    if (errors.length) {
+      return res.render('forms/contact', { form: req.body, menuItems, reqPath: req.path, errors });
+    }
+
+    const result = await contactMailer.sendContact(req.body); 
+    res.render('forms/success', { form: req.data, menuItems, reqPath: req.path, result} );
+  } catch (err) {
+    res.status(500).send(err); 
   }
-  res.render('forms/success', { form: req.data, menuItems, reqPath: req.path} );
 });
 
 app.get('/*', async (req, res) => {
