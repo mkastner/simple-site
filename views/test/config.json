@@ -1,0 +1,7 @@
+{
+  "mail": {
+    "from": "Test Mailer <test@galt.de>",
+    "to": "kastner@galt.de",
+    "subject": "Kontaktformular - Test"
+  }
+}

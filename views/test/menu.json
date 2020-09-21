@@ -1,0 +1,8 @@
+[
+  { "label": "Home": "url": "/" },
+  { "label": "Ihr Brennholz": "url": "/produktion" },
+  { "label": "Anfahrt": "url": "/anfahrt" },
+  { "label": "Kontaktformular": "url": "/kontaktforumular" },
+  { "label": "Datenschutz": "url": "/datenschutz" },
+  { "label": "Impressum": "url": "/impressum" }
+]

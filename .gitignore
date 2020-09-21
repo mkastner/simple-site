@@ -1,0 +1,5 @@
+*.log
+deployment-config.sh
+node_modules
+views/khe
+yarn-error.log

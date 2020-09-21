@@ -1,0 +1,42 @@
+Kontakt
+
+{{errors}}
+
+<form method="post">
+  <label for="givenName"
+    class="label required">
+    <input type="text" name="givenName" value="{{form.givenName}}">
+    {{#fieldError 'givenName' errors}}
+      <span class="field-errror">{{this}}</span> 
+    {{/fieldError}}
+  </label>
+  <label for="familyName"
+    class="label required">
+    <input type="text" name="familyName" value="{{form.familyName}}">
+    {{#fieldError 'familyName' errors}}
+      <span class="field-errror">{{this}}</span> 
+    {{/fieldError}}
+  </label>
+  <label for="phone"
+    class="label required">
+    <input type="text" name="phone" value="{{form.phone}}">
+    {{#fieldError 'phone' errors}}
+      <span class="field-errror">{{this}}</span> 
+    {{/fieldError}}
+  </label>
+  <label for="email"
+    class="label required">
+    <input type="text" name="email" value="{{form.email}}">
+    {{#fieldError 'email' errors}}
+      <span class="field-errror">{{this}}</span> 
+    {{/fieldError}}
+  </label>
+  <label for="messageBody"
+    class="label required">
+    <textarea name="messageBody"></textarea>
+    {{#fieldError 'messageBody' errors}}
+      <span class="field-errror">{{this}}</span> 
+    {{/fieldError}}
+  </label>
+  <input type="submit">
+</form>
