@@ -9,4 +9,12 @@ const env = process.env.NODE_ENV || 'development';
 const envVars = EnvVars({ custom, app: 'SIMPLESITE', deploy: env.toUpperCase()});
 
 module.exports = {
+  transportOptions: {
+    host: envVars('MAILHOST'),
+    auth: {
+      user: envVars('MAILUSER'),
+      pass: envVars('MAILPW')
+    }
+
+  } 
 }

@@ -1,5 +1,6 @@
 *.log
 deployment-config.sh
 node_modules
-views/khe
+custom/khe
+custom-backup
 yarn-error.log

@@ -1,0 +1,10 @@
+[
+  { 
+    "url": "/" ,
+    "label": "Home"
+  },
+  { 
+    "url": "/subdir" ,
+    "label": "Sub"
+  }
+]

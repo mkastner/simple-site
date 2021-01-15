@@ -16,7 +16,6 @@ tape('path up', (t) => {
       if (count > 4) return process.exit(0);
     });
 
-
     t.equals(result[0], '/test1/test2/test3');
     t.equals(result[1], '/test1/test2');
     t.equals(result[2], '/test1');

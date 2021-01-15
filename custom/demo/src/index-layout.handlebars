@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kaminholz Exklusiv</title>
+    <meta name="keywords" content="{{meta.keywords}}"/> 
+    <meta name="description" content="{{meta.description}}"/> 
+    <title>{{meta.title}}</title>
+    <link href="/css/index.css" rel="stylesheet" /> 
+    {{#ifEnv 'development'}}
+      <script src="/js/websocket.js"></script>
+    {{/ifEnv}}
+  </head>
+  <body class="body">
+
+    <ul class="nav__menu">
+      {{#menu menu reqPath}}
+      <li class="nav__item">
+        <a href="{{{this.url}}}"
+          class="nav__link">
+          {{this.label}}
+        </a>
+      </li>
+      {{/menu}}
+    </ul>
+    {{{body}}}
+  </body>
+</html>
