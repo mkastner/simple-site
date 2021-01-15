@@ -108,5 +108,5 @@ server.listen(port, () => {
     });
   } 
 
-  console.log(`Example app listening at port:${port}`)
+  log.info(`Example app listening at port:${port}`)
 });
