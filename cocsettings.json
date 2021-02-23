@@ -1,0 +1,6 @@
+{
+  "eslint.packageManager": "yarn",
+  "eslint.nodePath": "/home/devel/.nvm/versions/node/v15.5.1/bin/node",
+  "html.filetypes": ["html", "hbs", "handlebars"]
+}
+
