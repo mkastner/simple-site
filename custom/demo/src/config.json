@@ -3,5 +3,11 @@
     "from": "Test Mailer <test@galt.de>",
     "to": "kastner@galt.de",
     "subject": "Kontaktformular - Test"
-  }
+  },
+  "routes": [
+    { 
+      "url": "/kontakt",
+      "app": "./lib/mailer/contact" 
+    } 
+  ]
 }

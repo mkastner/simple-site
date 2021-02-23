@@ -1,16 +1,13 @@
 const express = require('express');
 const exphbs = require('express-handlebars'); 
-const fs = require('fs-extra');
 const bodyParser = require('body-parser');
-const contactMailer = require('./lib/mailer/contact');
-const { validationResult } = require('express-validator');
-const contactFormValidation = require('./lib/utils/contact-form-validation');
 const path = require('path');
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 const http = require('http');
 const log = require('mk-log');
 const siteName = process.env.SIMPLESITE_NAME; 
+const customConfig = require(`./custom/${siteName}/src/config.json`);
 const buildCss = require('./lib/utils/build-css');
 const buildPathContent = require('./lib/utils/build-path-content');
 const handlebarsHelpers = require('./lib/utils/handlebars/helpers');
@@ -20,9 +17,6 @@ if (!siteName) {
 }
 
 log.info('siteName', siteName);
-
-const menu = JSON.parse(
-  fs.readFileSync(path.join(__dirname, `custom/${siteName}/src/index-menu.json`), 'utf8'));
 
 const expressConfig = {
   layoutsDir: path.join(__dirname, `/custom/${siteName}/src`),
@@ -46,26 +40,17 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 const absViewsDir = path.resolve(viewsDir);  
 
-app.get('/kontakt', (req, res) => {
-  res.render('forms/contact', {menu});
-});
+if (customConfig.routes && customConfig.routes.length) {
 
+  for (let i = 0, l = customConfig.routes.length; i < l; i++) {
 
-app.post('/kontakt', contactFormValidation, async (req, res) => {
-  try {
-    log.info('req.body', req.body);
-    const { errors } = validationResult(req);
-    log.info('validation errors', errors);
-    if (errors.length) {
-      return res.render('forms/contact', { form: req.body, menu, reqPath: req.path, errors });
-    }
+    const url = customConfig.routes[i].url;
+    const router = require(customConfig.routes[i].app);
 
-    const result = await contactMailer.sendContact(req.body); 
-    res.render('forms/success', { form: req.data, menu, reqPath: req.path, result} );
-  } catch (err) {
-    res.status(500).send(err); 
+    app.use(url, router); 
   }
-});
+
+}
 
 app.get('/*', async (req, res) => {
   try {
@@ -84,7 +69,6 @@ const server = http.createServer(app);
 
 server.listen(port, () => {
   if (process.env.NODE_ENV === 'development') {
-    const sass = require('node-sass'); 
     const chokidar = require('chokidar');
     const watcher = chokidar.watch([`custom/${siteName}/**/*.{hbs,handlebars,md,json,scss}`]);
     const WebSocket = require('ws');
