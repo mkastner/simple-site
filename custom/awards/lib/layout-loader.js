@@ -13,7 +13,28 @@ async function main() {
     const res = await fetch(url);
     const body = await res.text();
 
-    const layout = body.replace('[CONTENT]', '{{{body}}}'); 
+
+    const headerJSCode = [];
+
+    if (process.env.NODE_ENV === 'development') {
+      headerJSCode.push(`
+        <script src="/js/websocket.js"></script>
+      `);
+    } 
+
+    const headerCSSCode = [];
+
+    headerCSSCode.push(`
+      <link href="/css/index.css" rel="stylesheet" />
+    `);
+
+    let layout = body.replace('[CONTENT]', '{{{body}}}')
+      .replace('<!--[JAVASCRIPTS-HEAD]-->', headerJSCode.join('\n')) 
+      .replace('<!--[STYLESHEETS-HEAD]-->', headerCSSCode.join('\n')); 
+  
+    if (process.env.NODE_ENV === 'development') {
+      layout = layout.replace(`<div id="cookie-banner"><cookie-banner></cookie-banner></div>`, ''); 
+    }
     
     await fs.writeFile(path.join(srcRootDir, 'index-layout.handlebars'), layout);
   } catch (err) {

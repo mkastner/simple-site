@@ -12,6 +12,8 @@ const buildCss = require('./lib/utils/build-css');
 const buildPathContent = require('./lib/utils/build-path-content');
 const handlebarsHelpers = require('./lib/utils/handlebars/helpers');
 
+log.info('NODE_ENV', process.env.NODE_ENV);
+
 if (!siteName) {
   throw new Error('SIMPLESITE_NAME missing in env'); 
 }
@@ -34,6 +36,10 @@ app.set('views', viewsDir);
 app.use('/sitemap.xml', express.static(__dirname + `/custom/${siteName}/sitemap.xml`));
 app.use('/assets/', express.static(__dirname + `/custom/${siteName}/assets/`));
 app.use('/css/', express.static(__dirname + `/custom/${siteName}/dist/css/`));
+
+app.use('/favicon.ico', (req, res) => {
+  res.status(200).end();
+});
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -70,7 +76,7 @@ const server = http.createServer(app);
 server.listen(port, () => {
   if (process.env.NODE_ENV === 'development') {
     const chokidar = require('chokidar');
-    const watcher = chokidar.watch([`custom/${siteName}/**/*.{hbs,handlebars,md,json,scss}`]);
+    const watcher = chokidar.watch([`custom/${siteName}/**/*.{hbs,handlebars,md,json,js,scss}`]);
     const WebSocket = require('ws');
     const wss = new WebSocket.Server({server});
     wss.on('connection', (ws) => {
@@ -83,7 +89,7 @@ server.listen(port, () => {
         log.info('path changed:', changedPath);
         let publicPath = changedPath;
         if (changedPath.indexOf('.scss') !== -1) {
-          const result = buildCss(changedPath); 
+          const result = buildCss(changedPath);
           log.info('result', result);
         } 
         log.info('publicPath', publicPath);

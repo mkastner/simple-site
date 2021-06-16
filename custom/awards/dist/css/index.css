@@ -1,0 +1,27 @@
+.finanz-award__annual-seal {
+  display: block;
+  margin: 1.5rem auto; }
+
+.finanz-award__annual-title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0.5rem 1rem;
+  color: #00a0ec; }
+
+.finanz-award__annual-link {
+  display: block;
+  margin: 0.5rem 1rem;
+  position: relative; }
+  .finanz-award__annual-link::after {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 0.75rem solid transparent;
+    border-bottom: 0.75rem solid transparent;
+    border-left: 0.75rem solid #00a0ec; }
+
+/*# sourceMappingURL=index.css.map */

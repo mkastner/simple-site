@@ -42,7 +42,8 @@
     "ws": "^7.3.1"
   },
   "devDependencies": {
-    "chokidar": "^3.4.2",
+    "axios": "^0.21.1",
+    "chokidar": "^3.5.1",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
@@ -52,6 +53,7 @@
     "node-sass": "^6.0.0",
     "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
-    "tape": "^5.0.1"
+    "tape": "^5.0.1",
+    "textile-js": "^2.1.1"
   }
 }
