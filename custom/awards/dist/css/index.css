@@ -8,11 +8,11 @@
   margin: 0.5rem 1rem;
   color: #00a0ec; }
 
-.finanz-award__annual-link {
+.finanz-award__annual-link, .finanz-award__laureates-link {
   display: block;
-  margin: 0.5rem 1rem;
-  position: relative; }
-  .finanz-award__annual-link::after {
+  position: relative;
+  margin: 0.5rem 0; }
+  .finanz-award__annual-link::after, .finanz-award__laureates-link::after {
     position: absolute;
     content: '';
     right: 0;

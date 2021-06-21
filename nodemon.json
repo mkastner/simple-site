@@ -2,6 +2,7 @@
  "restartable": "rs",
  "ignore": [
    ".git",
+   "custom/awards/dist/**/*",   
    "node_modules/**/node_modules"
  ],
  "verbose": true,

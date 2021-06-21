@@ -1,4 +1,5 @@
 *.log
+.DS_Store
 deployment-config.sh
 node_modules
 custom/khe

@@ -35,7 +35,7 @@ async function main() {
     if (process.env.NODE_ENV === 'development') {
       layout = layout.replace(`<div id="cookie-banner"><cookie-banner></cookie-banner></div>`, ''); 
     }
-    
+
     await fs.writeFile(path.join(srcRootDir, 'index-layout.handlebars'), layout);
   } catch (err) {
     log.error(err);

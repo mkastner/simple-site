@@ -19,11 +19,10 @@ $color__text:             #333;
     margin: 0.5rem 1rem;
     color: $color__primary--light; 
   }
-  &__annual-link {
+  &__annual-link, &__laureates-link {
     display: block; 
-    margin: 0.5rem 1rem;
     position: relative;
-    
+    margin: 0.5rem 0;
     &::after {
       position: absolute;
       content: ''; 

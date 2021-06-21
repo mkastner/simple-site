@@ -61,10 +61,10 @@ if (customConfig.routes && customConfig.routes.length) {
 app.get('/*', async (req, res) => {
   try {
 
-    const {  page, status } = 
+    const pages = 
       await buildPathContent(absViewsDir, req.path); 
 
-    res.status(status).send(page);
+    res.status(pages[0].status).send(pages[0].page);
   } catch (err) {
     log.error(err);
     res.status(500).send(`An error has occured: ${err}`);
