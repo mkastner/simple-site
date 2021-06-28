@@ -41,6 +41,10 @@ app.use('/favicon.ico', (req, res) => {
   res.status(200).end();
 });
 
+app.use('/robots.txt', (req, res) => {
+  res.status(200).end();
+});
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
