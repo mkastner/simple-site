@@ -1,6 +1,6 @@
 const tape = require('tape');
 const log = require('mk-log');
-const movePathUp = require('../../../lib/utils/move-path-up');
+const movePathUp = require('../../../lib/utils/move-path-up.js');
 
 tape('path up', (t) => {
 

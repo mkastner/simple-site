@@ -12,7 +12,6 @@ function sortVolumeByYear(docA, docB) {
 
 async function load() {
   try {
-    log.info('load');
     const apiResult = await axios({
       url: 'https://api-auszeichnungen.fmh.de/graphql',
       method: 'post',
@@ -62,7 +61,6 @@ async function load() {
 module.exports = async function YearsLoader() {
   try {
     const result = await load();
-    log.info(result);
     return result;
   } catch (err) {
     log.error(err);

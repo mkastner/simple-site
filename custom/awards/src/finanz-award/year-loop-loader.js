@@ -44,8 +44,6 @@ async function load() {
           `,
         },
       });
-     
-      log.info('data-cache ______________________________');
 
       cache.put('year-loop', apiResult); 
     } 
@@ -62,7 +60,6 @@ async function load() {
       const docs = apiResult.data.data.awards.docs[0].commendations.docs;
       for (let i = 0, l = docs.length; i < l; i++) {
         const doc = docs[i];
-        log.info('doc.volume.year ==================>', doc.volume.year); 
         const devRegExp = new RegExp(`/${doc.volume.year}$`);
         let devReqPath;
         

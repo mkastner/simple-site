@@ -1,8 +1,0 @@
-{
-  "eslint.packageManager": "yarn",
-  "eslint.nodePath": "/Users/kastner/.nvm/versions/node/v16.0.0/bin/node",
-  "html.format.enable": true, 
-  "html.enable": true,
-  "html.filetypes": ["html", "hbs", "handlebars"]
-}
-
