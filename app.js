@@ -8,7 +8,6 @@ const http = require('http');
 const log = require('mk-log');
 const siteName = process.env.SIMPLESITE_NAME;
 const buildAsset = require('./lib/utils/build-asset');
-
 const buildPathContent = require('./lib/utils/build-path-content');
 const handlebarsHelpers = require('./lib/utils/handlebars/helpers');
 const requireModule = require('./lib/utils/require-module.js');
@@ -47,12 +46,10 @@ app.use(
 );
 */
 
-const assetFilter = /\.(png|svg|js|jpeg|jpg|json|css|dist|xml|woff)$/; 
+const assetFilter = /\.(png|svg|js|jpeg|jpg|json|css|dist|xml|woff)$/;
 app.get(assetFilter, express.static(__dirname + `/custom/${siteName}/dist/`));
 
 app.use('/dev/', express.static(__dirname + '/public/dev/'));
-
-
 
 app.use('/favicon.ico', (_req, res) => {
   res.status(200).end();
@@ -84,7 +81,13 @@ app.get('/*', async (req, res) => {
       log.error('Check if resource exists in dist folder:', req.path);
       throw new Error('path with this extension should not get this far');
     }
-    const pages = await buildPathContent(absViewsDir, req.path);
+
+    log.info('calling buildPathContent with req.path:', req.path);
+    const buildPathContentResult = buildPathContent(absViewsDir, req.path);
+
+    log.info('buildPathContentResult', buildPathContentResult);
+
+    const pages = await buildPathContentResult.forDevelopment();
 
     res.status(pages[0].status).send(pages[0].page);
   } catch (err) {
@@ -117,10 +120,10 @@ server.listen(port, () => {
           log.info('changedPath', changedPath);
           log.info('changedCustomPath', changedCustomPath);
           try {
-             changedUri = buildAsset(changedCustomPath).writeCss();
+            changedUri = buildAsset(changedCustomPath).writeCss();
           } catch (err) {
             log.error(err);
-          } 
+          }
           //const result = buildCss(changedPath);
           //log.info('result', result);
         }

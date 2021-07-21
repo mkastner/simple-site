@@ -1,7 +1,7 @@
 const axios = require('axios');
 const log = require('mk-log');
 
-module.exports = async function menuLoader() {
+async function load() {
   try {
     const response = await axios.get(
       `https://www.fmh.de/api/topics/tree?url=${encodeURIComponent(
@@ -23,4 +23,8 @@ module.exports = async function menuLoader() {
   } catch (err) {
     log.error(err);
   }
+}
+
+module.exports = {
+  load,
 };

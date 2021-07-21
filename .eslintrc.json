@@ -27,7 +27,7 @@
       "error",
       "always"
     ],
-   "prettier/prettier": ["error", { "singleQuote": true }],
-   "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   }
 }

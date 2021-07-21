@@ -1,0 +1,39 @@
+$color__primary--dark:    #0050a0;
+$color__primary:          #085191;
+$color__primary--lighter: #0066a1;
+$color__primary--light:   #00a0ec;
+
+$color__text--secondary: #1194db;
+$color__text:             #333;
+
+.finanz-award {
+  &__annual-box {
+  }
+  &__annual-seal {
+    display: block;
+    margin: 1.5rem auto;
+  }
+  &__annual-title {
+    text-align: center; 
+    font-size: 1.2rem; 
+    margin: 0.5rem 1rem;
+    color: $color__primary--light; 
+  }
+  &__annual-link, &__laureates-link {
+    display: block; 
+    position: relative;
+    margin: 0.5rem 0;
+    &::after {
+      position: absolute;
+      content: ''; 
+      right: 0;
+      top: 0;
+      display: block;
+      width: 0; 
+      height: 0; 
+      border-top: 0.75rem solid transparent;
+      border-bottom: 0.75rem solid transparent;
+      border-left: 0.75rem solid $color__primary--light; 
+    }
+  }
+}
