@@ -1,11 +1,16 @@
 {
   "name": "simple-site",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "app.js",
   "author": "John Galt <kastner@galt.de>",
   "license": "MIT",
+  "bin": {
+    "build": "./bin/build.js",
+    "dev": "./bin/dev.js"
+  },
   "scripts": {
-    "build": "yarn build:khe",
+    "build": "./bin/build.js",
+    "dev": "./bin/dev.js",
     "build:awards": "yarn build:awards:css && yarn build:awards:views",
     "build:awards:css": "rimraf custom/awards/dist/css && node-sass -r custom/awards/src -o custom/awards/dist/css",
     "build:awards:remote-layout": "SIMPLESITE_NAME=awards node custom/awards/lib/layout-loader.js",
@@ -42,11 +47,12 @@
     "express-validator": "^6.6.1",
     "fast-glob": "^3.2.7",
     "fs-extra": "^9.0.1",
+    "global": "^4.4.0",
     "markdown-it": "^11.0.1",
     "markdown-it-attrs": "^3.0.3",
     "mk-env-vars": "https://github.com/mkastner/mk-env-vars.git#v0.0.4",
-    "mk-log": "https://github.com/mkastner/mk-log.git#v0.0.12",
     "mk-graceful-stat": "https://github.com/mkastner/mk-graceful-stat.git#v0.0.3",
+    "mk-log": "https://github.com/mkastner/mk-log.git#v0.0.12",
     "nodemailer": "^6.4.11",
     "path-extra": "^4.3.0",
     "ws": "^7.3.1"

@@ -1,33 +1,24 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const path = require('path');
+const Path = require('path');
 const app = express();
 const port = 3010;
 const http = require('http');
 const log = require('mk-log');
-const siteName = process.env.SIMPLESITE_NAME;
 const buildAsset = require('./lib/utils/build-asset');
 const buildPathContent = require('./lib/utils/build-path-content');
 const handlebarsHelpers = require('./lib/utils/handlebars/helpers');
 const requireModule = require('./lib/utils/require-module.js');
-const loadedCustomConfig = requireModule(
-  `./custom/${siteName}/src/index-config.json`
-);
+const loadedCustomConfig = requireModule('./src/index-config.json');
 const mergeCustomConfigEnv = require('./lib/utils/merge-custom-config-env.js');
 
 const customConfig = mergeCustomConfigEnv(loadedCustomConfig);
 
 log.info('NODE_ENV', process.env.NODE_ENV);
 
-if (!siteName) {
-  throw new Error('SIMPLESITE_NAME missing in env');
-}
-
-log.info('siteName', siteName);
-
 const expressConfig = {
-  layoutsDir: path.join(__dirname, `/custom/${siteName}/src`),
+  layoutsDir: Path.join(__dirname, 'src'),
   defaultLayout: 'index-layout',
   helpers: handlebarsHelpers,
 };
@@ -35,7 +26,7 @@ const expressConfig = {
 app.set('view engine', 'hbs');
 app.engine('hbs', exphbs(expressConfig));
 
-const viewsDir = __dirname + `/custom/${siteName}/src`;
+const viewsDir = Path.join(__dirname, 'src');
 
 app.set('views', viewsDir);
 
@@ -47,7 +38,7 @@ app.use(
 */
 
 const assetFilter = /\.(png|svg|js|jpeg|jpg|json|css|dist|xml|woff)$/;
-app.get(assetFilter, express.static(__dirname + `/custom/${siteName}/dist/`));
+app.get(assetFilter, express.static(__dirname + 'dist'));
 
 app.use('/dev/', express.static(__dirname + '/public/dev/'));
 
@@ -62,7 +53,7 @@ app.use('/robots.txt', (_req, res) => {
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const absViewsDir = path.resolve(viewsDir);
+const absViewsDir = Path.resolve(viewsDir);
 
 if (customConfig.routes && customConfig.routes.length) {
   for (let i = 0, l = customConfig.routes.length; i < l; i++) {
@@ -100,7 +91,7 @@ const server = http.createServer(app);
 
 server.listen(port, () => {
   if (process.env.NODE_ENV === 'development') {
-    const srcRoot = `custom/${siteName}/src`;
+    const srcRoot = 'src';
     const watchedPaths = [`${srcRoot}/**/*.{hbs,handlebars,md,json,js,scss}`];
     const chokidar = require('chokidar');
     const watcher = chokidar.watch(watchedPaths);
@@ -132,6 +123,5 @@ server.listen(port, () => {
       });
     });
   }
-
   log.info(`Example app listening at port:${port}`);
 });
