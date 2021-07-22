@@ -17,8 +17,12 @@ const customConfig = mergeCustomConfigEnv(loadedCustomConfig);
 
 log.info('NODE_ENV', process.env.NODE_ENV);
 
+const srcDir = Path.resolve('src');
+
+log.info('srcDir', srcDir);
+
 const expressConfig = {
-  layoutsDir: Path.join(__dirname, 'src'),
+  layoutsDir: srcDir,
   defaultLayout: 'index-layout',
   helpers: handlebarsHelpers,
 };
@@ -26,7 +30,7 @@ const expressConfig = {
 app.set('view engine', 'hbs');
 app.engine('hbs', exphbs(expressConfig));
 
-const viewsDir = Path.join(__dirname, 'src');
+const viewsDir = srcDir;
 
 app.set('views', viewsDir);
 

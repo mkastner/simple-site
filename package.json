@@ -41,6 +41,7 @@
     "watch-css:khe": "node-sass -r custom/khe/scss -wo custom/khe/dist/css"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
@@ -58,7 +59,6 @@
     "ws": "^7.3.1"
   },
   "devDependencies": {
-    "axios": "^0.21.1",
     "chokidar": "^3.5.1",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^8.2.0",
