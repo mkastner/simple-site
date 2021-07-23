@@ -12,7 +12,7 @@ const handlebarsHelpers = require('./lib/utils/handlebars/helpers');
 const requireModule = require('./lib/utils/require-module.js');
 const loadedCustomConfig = requireModule('./src/index-config.json');
 const mergeCustomConfigEnv = require('./lib/utils/merge-custom-config-env.js');
-
+const absoluteStatic = require('./lib/middleware/absolute-static-middleware.js');
 const customConfig = mergeCustomConfigEnv(loadedCustomConfig);
 
 log.info('NODE_ENV', process.env.NODE_ENV);
@@ -44,7 +44,8 @@ app.use(
 
 // route all assets to dist location
 const assetFilter = /\.(png|svg|js|jpeg|jpg|json|css|dist|xml|woff)$/;
-app.get(assetFilter, express.static(Path.resolve('dist')));
+//app.get(assetFilter, express.static(distDir));
+app.get(assetFilter, absoluteStatic(distDir));
 
 app.use('/dev/', express.static(__dirname + '/public/dev/'));
 
@@ -58,8 +59,6 @@ app.use('/robots.txt', (_req, res) => {
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-
-const absViewsDir = Path.resolve(viewsDir);
 
 if (customConfig.routes && customConfig.routes.length) {
   for (let i = 0, l = customConfig.routes.length; i < l; i++) {
@@ -80,7 +79,7 @@ app.get('/*', async (req, res) => {
     }
 
     log.info('calling buildPathContent with req.path:', req.path);
-    const buildPathContentResult = buildPathContent(absViewsDir, req.path);
+    const buildPathContentResult = buildPathContent(srcDir, req.path);
 
     log.info('buildPathContentResult', buildPathContentResult);
 
