@@ -9,8 +9,8 @@
     "dev-site": "./bin/dev-site.js"
   },
   "scripts": {
-    "build-site": "./bin/build-site.js",
-    "dev-site": "./bin/dev-site.js",
+    "build-site": "node ./bin/build-site.js",
+    "dev-site": "node ./bin/dev-site.js",
     "build:awards": "yarn build:awards:css && yarn build:awards:views",
     "build:awards:css": "rimraf custom/awards/dist/css && node-sass -r custom/awards/src -o custom/awards/dist/css",
     "build:awards:remote-layout": "SIMPLESITE_NAME=awards node custom/awards/lib/layout-loader.js",

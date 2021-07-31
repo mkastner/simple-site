@@ -1,0 +1,26 @@
+{
+  "header": [
+    {
+      "label": "Kontakt",
+      "url": "https://www.fmh.de/contact"
+    },
+    { "label": "Für Banken", "url": "/" },
+    { "label": "Für Redaktionen", "url": "/fuer-redaktionen" },
+    { "label": "FAQ", "url": "/faq" },
+    { "label": "Über FMH", "url": "/wir-ueber-uns" }
+  ],
+  "footer": [
+    {
+      "label": "Kontakt",
+      "url": "https://www.fmh.de/contact"
+    },
+    { "label": "Für Banken", "url": "/" },
+    { "label": "Für Redaktionen", "url": "/fuer-redaktionen" },
+    { "label": "FAQ", "url": "/faq" },
+    { "label": "Über FMH", "url": "/wir-ueber-uns" },
+    { "label": "Impressum", "url": "/impressum"},
+    { "label": "AGB", "url": "/agb"},
+    { "label": "Datenschutz", "url": "/datenschutz"},
+    { "label": "ANB", "url": "/anb"}
+  ]
+}
