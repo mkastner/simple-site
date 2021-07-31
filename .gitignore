@@ -2,6 +2,7 @@
 .DS_Store
 deployment-config.sh
 node_modules
+dist/**/*
 custom/khe
 custom-backup
 yarn-error.log
