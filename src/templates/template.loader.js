@@ -1,7 +1,6 @@
 const axios = require('axios');
 const log = require('mk-log');
-const Path = require('path');
-const Cache = require(Path.resolve('lib/utils/data-cache.js'));
+const Cache = require('./lib/utils/data-cache.js');
 const ids = [
   230, // Hypothekenvergleich
   35, //Studenentkredit
