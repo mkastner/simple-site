@@ -35,7 +35,7 @@
       crossorigin=""
     />
     <link href="/css/index.css" rel="stylesheet" />
-    <script src="/index.script.js"></script>
+    <script src="/index.js"></script>
     <title></title>
     {{#ifEnv "development"}}
     <script src="/dev/websocket.js"></script>
@@ -93,8 +93,10 @@
         </div>
       </div>
       <nav class="fmh-nav fmh-header__fmh-nav">
+        <!-- loaderDate on each page for index passing pathsStore from from context-->
+        {{#loaderData '/index' pathsStore}} 
         <ul class="fmh-menu fmh-nav__fmh-menu">
-          {{#each data}}
+          {{#each this}}
           <li class="fmh-menu__item">
             <input
               type="checkbox"
@@ -135,6 +137,7 @@
           </li>
           {{/each}}
         </ul>
+        {{/loaderData}}
       </nav>
     </header>
     <main class="fmh-main fmh-body__fmh-main">
@@ -165,8 +168,9 @@
       </figure>
       <div class="fmh-footer__content">
         <nav class="fmh-footer-nav fmh-footer__fmh-footer-nav">
+          {{#loaderData '/index' pathsStore}} 
           <ul class="fmh-footer-nav__list">
-            {{#each data}}
+            {{#each this}}
             <li class="fmh-footer-nav__item">
               <a
                 href="{{ configValconfighost }}{{ this.preferredPermalink }}"
@@ -190,6 +194,7 @@
             </li>
             {{/each}}
           </ul>
+          {{/loaderData}}
         </nav>
       </div>
       <div class="fmh-footer__legal">
