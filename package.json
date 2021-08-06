@@ -35,6 +35,7 @@
     "test:utils:build-path-content": "NODE_ENV=test SIMPLESITE_NAME=demo node test/lib/utils/build-path-content.test.js",
     "test:utils:move-path-up": "NODE_ENV=test SIMPLESITE_NAME=demo node test/lib/utils/move-path-up.test.js",
     "test:utils:move-path-down": "NODE_ENV=test SIMPLESITE_NAME=demo node test/lib/utils/move-path-down.test.js",
+    "test:utils:traverse-directory": "NODE_ENV=test node test/lib/utils/traverse-directory.test.js",
     "test:utils:file-stem": "NODE_ENV=test SIMPLESITE_NAME=demo node test/lib/utils/file-stem.test.js",
     "watch-css:awards": "node-sass -r custom/awards/scss -wo custom/awards/dist/css",
     "watch-css:demo": "node-sass -r custom/demo/scss -wo custom/demo/dist/css",

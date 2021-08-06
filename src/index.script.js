@@ -21,38 +21,6 @@
     'url(/fonts/Roboto-Thin.woff)'
   );
 
-  /*
-  robotoMedium
-    .load()
-    .then(function (loaded_face) {
-      document.fonts.add(loaded_face);
-      //document.body.style.fontFamily = '"Roboto-Medium", Arial';
-    })
-    .catch(function (err) {
-      // error occurred
-      console.error(err);
-    });
-  robotoRegular
-    .load()
-    .then(function (loaded_face) {
-      document.fonts.add(loaded_face);
-      //document.body.style.fontFamily = '"Roboto-Medium", Arial';
-    })
-    .catch(function (err) {
-      // error occurred
-      console.error(err);
-    });
-  robotoThin
-    .load()
-    .then(function (loaded_face) {
-      document.fonts.add(loaded_face);
-      //document.body.style.fontFamily = '"Roboto-Medium", Arial';
-    })
-    .catch(function (err) {
-      // error occurred
-      console.error(err);
-    });
-  */
   Promise.all([
     robotoMedium.load(),
     robotoRegular.load(),

@@ -9,17 +9,9 @@ async function load() {
       )}&maxDepth=2`
     );
     const topLevel = response.data.children;
-    const pub = {
+    return {
       data: topLevel,
     };
-
-    pub.result = function result(fnc, reqPath) {
-      const devReqPath = reqPath; // live request path as sent by browser
-      const buildReqPath = reqPath; // build request path as sent by builder
-      fnc(pub.data, { itemData: pub.data, devReqPath, buildReqPath });
-    };
-
-    return pub;
   } catch (err) {
     log.error(err);
   }
