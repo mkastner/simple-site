@@ -1,6 +1,6 @@
 {
   "name": "simple-site",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "app.js",
   "author": "John Galt <kastner@galt.de>",
   "license": "MIT",
@@ -9,8 +9,12 @@
     "dev-site": "./bin/dev-site.js"
   },
   "scripts": {
-    "build-site": "node ./bin/build-site.js",
+    "// build in dev mode": "",
+    "build-dev": "node ./bin/build-site.js",
+    "// build in production mode": "",
+    "build-prod": "NODE_ENV=production yarn build-dev",
     "dev-site": "node ./bin/dev-site.js",
+    "clear-dist": "rm -fr dist/*",
     "build:awards": "yarn build:awards:css && yarn build:awards:views",
     "build:awards:css": "rimraf custom/awards/dist/css && node-sass -r custom/awards/src -o custom/awards/dist/css",
     "build:awards:remote-layout": "SIMPLESITE_NAME=awards node custom/awards/lib/layout-loader.js",

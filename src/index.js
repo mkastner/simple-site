@@ -1,4 +1,5 @@
 (function () {
+  // using handlebars as asset proprocesor
   if (FontFace === 'undefined') {
     alert(
       'It looks as if your browser is outdated. You might want to ask your local dealer for a newer one.'
@@ -6,19 +7,19 @@
   }
   const robotoMedium = new FontFace(
     'Roboto-Medium',
-    'url(/fonts/Roboto-Medium.woff)'
+    'url({{assetUri}}/fonts/Roboto-Medium.woff)'
   );
   const robotoRegular = new FontFace(
     'Roboto-Regular',
-    'url(/fonts/Roboto-Regular.woff)'
+    'url({{assetUri}}/fonts/Roboto-Regular.woff)'
   );
   const robotoLight = new FontFace(
     'Roboto-Light',
-    'url(/fonts/Roboto-Light.woff)'
+    'url({{assetUri}}/fonts/Roboto-Light.woff)'
   );
   const robotoThin = new FontFace(
     'Roboto-Thin',
-    'url(/fonts/Roboto-Thin.woff)'
+    'url({{assetUri}}/fonts/Roboto-Thin.woff)'
   );
 
   Promise.all([
