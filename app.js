@@ -7,11 +7,16 @@ const port = 3010;
 const http = require('http');
 const log = require('mk-log');
 const buildAsset = require('./lib/utils/build-asset');
-const buildPathContent = require('./lib/utils/build-path-content');
+const srcRootDir = Path.resolve('src');
 const handlebarsHelpers = require('./lib/utils/handlebars/helpers');
+const populatePathsStore = require('./lib/utils/populate-paths-store.js');
 const requireModule = require('./lib/utils/require-module.js');
 const loadedCustomConfig = requireModule('./src/index-config.json');
 const mergeCustomConfigEnv = require('./lib/utils/merge-custom-config-env.js');
+const BuildPage = require('./lib/build/page.js');
+const PathsStore = require('./lib/utils/paths-store.js');
+const traverseDirectory = require('./lib/utils/traverse-directory.js');
+const globIntentPatterns = require('./lib/utils/glob-intent-patterns.js');
 
 const customConfig = mergeCustomConfigEnv(loadedCustomConfig);
 
@@ -64,64 +69,80 @@ if (customConfig.routes && customConfig.routes.length) {
   }
 }
 
-app.get('/*', async (req, res) => {
-  try {
-    //if (req.path.match(/.*?\.(svg|woff|js)$/)) {
-    if (req.path.match(/\.(svg|woff|js)$/)) {
-      log.info('path:', req.path);
-      log.error('Check if resource exists in dist folder:', req.path);
-      throw new Error('path with this extension should not get this far');
+async function main() {
+  const traverse = await traverseDirectory(srcRootDir);
+  traverse.fileGlobPatterns = globIntentPatterns;
+  traverse.event.addAsyncListener('file', populatePathsStore);
+  traverse.event.addAsyncListener('dir', () => {});
+  await traverse.runAsync();
+  const pathsStore = PathsStore.getInstance();
+
+  app.get('/*', async (req, res) => {
+    try {
+      //if (req.path.match(/.*?\.(svg|woff|js)$/)) {
+      if (req.path.match(/\.(svg|woff|js)$/)) {
+        log.info('path:', req.path);
+        log.error('Check if resource exists in dist folder:', req.path);
+        throw new Error('path with this extension should not get this far');
+      }
+
+      const preferredIntents = pathsStore.pull(req.path);
+
+      const buildPage = await BuildPage({
+        distRootDir: absSrcDir,
+        uriPath: req.path,
+        preferredIntents,
+        itemIntents: pathsStore.paths.get(req.path),
+        pathsStore,
+      });
+
+      const page = buildPage.toString();
+
+      res.status(200).send(page);
+    } catch (err) {
+      log.error(err);
+      res.status(500).send(`An error has occured: ${err}`);
     }
+  });
 
-    log.info('calling buildPathContent with req.path:', req.path);
-    const buildPathContentResult = buildPathContent(absSrcDir, req.path);
+  const server = http.createServer(app);
 
-    log.info('buildPathContentResult', buildPathContentResult);
-
-    const pages = await buildPathContentResult.forDevelopment();
-
-    res.status(pages[0].status).send(pages[0].page);
-  } catch (err) {
-    log.error(err);
-    res.status(500).send(`An error has occured: ${err}`);
-  }
-});
-
-const server = http.createServer(app);
-
-server.listen(port, () => {
-  if (process.env.NODE_ENV === 'development') {
-    const srcRoot = 'src';
-    const watchedPaths = [`${srcRoot}/**/*.{hbs,handlebars,md,json,js,scss}`];
-    const chokidar = require('chokidar');
-    const watcher = chokidar.watch(watchedPaths);
-    const WebSocket = require('ws');
-    const wss = new WebSocket.Server({ server });
-    wss.on('connection', (ws) => {
-      log.info('wss connection established');
-      ws.send('server connected');
-      ws.on('message', (msg) => {
-        log.info('wss message received:', msg);
-      });
-      watcher.on('change', (changedPath) => {
-        log.info('path changed:', changedPath);
-        const changedCustomPath = changedPath.replace(srcRoot, '');
-        let changedUri = '';
-        if (changedPath.indexOf('.scss') !== -1) {
-          log.info('changedPath', changedPath);
-          log.info('changedCustomPath', changedCustomPath);
-          try {
-            changedUri = buildAsset(changedCustomPath).writeCss();
-          } catch (err) {
-            log.error(err);
+  server.listen(port, () => {
+    if (process.env.NODE_ENV === 'development') {
+      const srcRoot = 'src';
+      const watchedPaths = [`${srcRoot}/**/*.{hbs,handlebars,md,json,js,scss}`];
+      const chokidar = require('chokidar');
+      const watcher = chokidar.watch(watchedPaths);
+      const WebSocket = require('ws');
+      const wss = new WebSocket.Server({ server });
+      wss.on('connection', (ws) => {
+        log.info('wss connection established');
+        ws.send('server connected');
+        ws.on('message', (msg) => {
+          log.info('wss message received:', msg);
+        });
+        watcher.on('change', (changedPath) => {
+          log.info('path changed:', changedPath);
+          const changedCustomPath = changedPath.replace(srcRoot, '');
+          let changedUri = '';
+          if (changedPath.indexOf('.scss') !== -1) {
+            log.info('changedPath', changedPath);
+            log.info('changedCustomPath', changedCustomPath);
+            try {
+              changedUri = buildAsset(changedCustomPath).writeCss();
+            } catch (err) {
+              log.error(err);
+            }
+            //const result = buildCss(changedPath);
+            //log.info('result', result);
           }
-          //const result = buildCss(changedPath);
-          //log.info('result', result);
-        }
-        log.info('changedUri', changedUri);
-        ws.send(JSON.stringify({ path: changedUri }));
+          log.info('changedUri', changedUri);
+          ws.send(JSON.stringify({ path: changedUri }));
+        });
       });
-    });
-  }
-  log.info(`Example app listening at port:${port}`);
-});
+    }
+    log.info(`Example app listening at port:${port}`);
+  });
+}
+
+main();

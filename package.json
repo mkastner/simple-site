@@ -1,6 +1,6 @@
 {
   "name": "simple-site",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "app.js",
   "author": "John Galt <kastner@galt.de>",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "// build in production mode": "",
     "build-prod": "NODE_ENV=production yarn build-dev",
     "dev-site": "node ./bin/dev-site.js",
+    "dev": "node app.js",
     "clear-dist": "rm -fr dist/*",
     "build:awards": "yarn build:awards:css && yarn build:awards:views",
     "build:awards:css": "rimraf custom/awards/dist/css && node-sass -r custom/awards/src -o custom/awards/dist/css",

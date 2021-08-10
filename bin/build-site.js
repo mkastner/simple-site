@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../lib/build/static.js');
+require('../lib/build/site.js');
