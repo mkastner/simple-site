@@ -10,7 +10,7 @@ async function load() {
     );
     const topLevel = response.data.children;
     return {
-      data: topLevel,
+      topLevel,
     };
   } catch (err) {
     log.error(err);

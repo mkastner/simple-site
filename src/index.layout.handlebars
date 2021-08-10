@@ -97,7 +97,7 @@
         <!-- loaderDate on each page for index passing pathsStore from from context-->
         {{#loaderData '/index' pathsStore}} 
         <ul class="fmh-menu fmh-nav__fmh-menu">
-          {{#each this}}
+          {{#each this.topLevel}}
           <li class="fmh-menu__item">
             <input
               type="checkbox"
@@ -171,7 +171,7 @@
         <nav class="fmh-footer-nav fmh-footer__fmh-footer-nav">
           {{#loaderData '/index' pathsStore}} 
           <ul class="fmh-footer-nav__list">
-            {{#each this}}
+            {{#each this.topLevel}}
             <li class="fmh-footer-nav__item">
               <a
                 href="{{ configValconfighost }}{{ this.preferredPermalink }}"
