@@ -37,7 +37,11 @@
     />
     <link href="/css/index.css" rel="stylesheet" />
     <script src="/index.js"></script>
-    <title></title>
+    <title>{{interpolateDate loaderData.topic.header_title}}</title>
+    <meta name="keywords"
+        content="{{interpolateDate loaderData.topic.meta_keywords}}" />
+     <meta name="description"
+        content="{{interpolateDate loaderData.topic.meta_description}}" />
     {{#ifEnv "development"}}
     <script src="/dev/websocket.js"></script>
     {{/ifEnv}}
@@ -141,19 +145,7 @@
         {{/loaderData}}
       </nav>
     </header>
-    <main class="fmh-main fmh-body__fmh-main">
       {{{body}}}
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-    </main>
     <footer class="fmh-footer">
       <figure class="fmh-footer__background-figure">
         <img
@@ -215,11 +207,11 @@
             {{/each}}
           </ul>
         </nav>
-        <p class="fmh-footer__p fmh-footer__p--address">
+        <address class="fmh-footer__p fmh-footer__p--address">
           FMH-Finanzberatung e.K.<br />
           Zeil 13, D-60313 Frankfurt am Main<br />
           Telefon 069/9518980 | Telefax 069/95189818
-        </p>
+        </address>
         <a href="#fmh-top" class="fmh-footer__button">Nach oben</a>
       </div>
     </footer>

@@ -1,0 +1,19 @@
+<article class="fmh-calc-intro fmh-body__calc-intro">
+  <hgroup class="fmh-calc-intro__hgroup">
+    <h1 class="fmh-calc-intro__h1">
+      {{ preferredTitle loaderData.topic }}
+    </h1>
+    <h2 class="fmh-calc-intro__h2">
+      {{ loaderData.topic.subtitle }}
+    </h2>
+  </hgroup>
+  <div class="fmh-calc-intro__fmh-body-text fmh-body-text">
+    {{{textile loaderData.topic.description}}}
+  </div>
+</article>
+<section class="fmh-main fmh-main--fmh-calc fmh-body__fmh-main">
+  <h2 class="fmh-main__h2">
+    {{ loaderData.topic.title }}
+  </h2>
+  <main class="fmh-calc fmh-main__fmh-calc">[CONTENT]</main>
+</section>

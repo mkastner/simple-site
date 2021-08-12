@@ -70,7 +70,7 @@ if (customConfig.routes && customConfig.routes.length) {
 }
 
 async function main() {
-  const traverse = await traverseDirectory(srcRootDir);
+  const traverse = traverseDirectory(srcRootDir);
   traverse.fileGlobPatterns = globIntentPatterns;
   traverse.event.addAsyncListener('file', populatePathsStore);
   traverse.event.addAsyncListener('dir', () => {});

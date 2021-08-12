@@ -1,11 +1,16 @@
 $color__line--dark: #0c71b3;
 $color__primary--dark: #0050a0;
 $color__primary: #085191;
-$color__primary--lighter: #0066a1;
+$color__primary--lighter: #0c71b3;
 $color__primary--light: #00a0ec;
 $color__text--secondary: #1194db;
+$color__text--shiny: #5fd5ff;
+// $color__background--intro: #0c71b3;
+
 $color__text: #333;
 $color__input--background: #f0f0f0;
+
+$content__max-width: 1160px;
 
 @mixin placeholder() {
   // expects next sibling to be placeholder
@@ -64,7 +69,7 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-body,
+body.fmh-body,
 html {
   margin: 0;
   padding: 0;
@@ -76,8 +81,7 @@ html {
     box-sizing: border-box;
   }
   &__fmh-main {
-    padding-top: 1rem;
-    max-width: 1160px;
+    max-width: $content__max-width;
     margin-left: auto;
     margin-right: auto;
   }
@@ -103,6 +107,11 @@ html {
   }
 }
 
+
+.fmh-calc-intro__hgroup, .fmh-calc-intro__fmh-body-text {
+  margin: 0 auto;
+  max-width: $content__max-width;
+}
 .fmh-header,
 .fmh-footer {
   & {
@@ -288,6 +297,34 @@ html {
   justify-content: space-between;
 }
 
+.fmh-main {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 0 1rem 1rem 1rem;
+  &--fmh-calc {
+    border-radius: 3px;
+    box-shadow: 0 3px 1px rgba(black, 0.2);
+    background-color: $color__primary--light;
+  }
+  &__h2 {
+    font-size: 1.4rem;
+    line-height: 1.4em; 
+    color: white;
+    font-weight: normal;
+    font-family: 'Roboto-Medium', arial, sans-serif;
+    display: inline-block; 
+  }
+  &__fmh-calc {
+    border-radius: 3px;
+    background-color: white;
+    padding: 1rem;
+    & > * {
+      margin-left: auto;
+      margin-right: auto;
+    } 
+  }
+}
+
 .fmh-nav {
   &__fmh-menu {
     width: 100%;
@@ -333,7 +370,7 @@ html {
     color: white;
     text-decoration: none;
     display: block;
-    font-family: 'Roboto-Medium';
+    font-family: 'Roboto-Medium', arial, sans-serif;
     vertical-align: middle;
     &:hover {
       color: $color__primary--light;
@@ -363,13 +400,38 @@ html {
     padding-left: 0.6em;
     padding-right: 0.6em;
     text-decoration: none;
-    font-family: 'Roboto-Medium';
+    font-family: 'Roboto-Medium', arial, sans-serif;
     color: $color__primary__dark;
     font-size: 1rem;
     text-transform: uppercase;
     &:hover {
       transition: all 0.3s;
       background-color: rgba(#e1eaf2, 0.5);
+    }
+  }
+}
+
+.fmh-calc-intro {
+  padding-bottom: 1rem;
+  background-color: $color__primary--lighter;
+  &__hgroup {
+
+  }
+  &__h1, &__h2 {
+    font-weight: normal;
+    font-family: 'Roboto-Medium', arial, sans-serif;
+    display: inline-block; 
+  }
+  &__h1 {
+     color: $color__text--shiny;
+  }
+  &__h2 {
+    color: white;
+  }
+  &__fmh-body-text {
+    p {
+      font-family: 'Roboto-Medium', arial, sans-serif;
+      color: white;
     }
   }
 }
@@ -415,7 +477,8 @@ $footer-lineheight: 1.3em;
     line-height: $footer-lineheight;
     color: white;
     &--address {
-      font-family: 'Roboto-Medium';
+      font-style: normal;
+      font-family: 'Roboto-Medium', arial, sans-serif;
     }
   }
   &__button {
@@ -429,7 +492,7 @@ $footer-lineheight: 1.3em;
     color: $color__primary--light;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: 'Roboto-Medium';
+    font-family: 'Roboto-Medium', arial, sans-serif;
   }
 }
 
@@ -458,7 +521,7 @@ $footer-lineheight: 1.3em;
   &__link {
     line-height: 1.6em;
     text-decoration: none;
-    font-family: 'Roboto-Medium';
+    font-family: 'Roboto-Medium', arial, sans-serif;
     font-size: 1.1rem;
     color: white;
   }
@@ -476,7 +539,7 @@ $footer-lineheight: 1.3em;
     color: white;
     line-height: 1.6em;
     text-decoration: none;
-    font-family: 'Roboto-Medium';
+    font-family: 'Roboto-Medium', arial, sans-serif;
     font-size: 1rem;
     display: inline-block;
     &:hover {
@@ -500,7 +563,7 @@ $footer-lineheight: 1.3em;
     display: inline-block;
     line-height: $footer-lineheight;
     text-decoration: none;
-    font-family: 'Roboto-Medium';
+    font-family: 'Roboto-Medium', arial, sans-serif;
     font-size: 1rem;
     color: white;
     &:hover {
@@ -763,7 +826,7 @@ $footer-lineheight: 1.3em;
       text-transform: none;
       font-size: 1.1rem;
       pointer-events: none;
-      font-family: 'Roboto-Regular';
+      font-family: 'Roboto-Regular', arial, sans-serif;
     }
   }
 

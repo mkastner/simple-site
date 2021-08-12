@@ -11,6 +11,8 @@ async function load() {
       url: `https://www.fmh.de/api/topics/list-by-ids/${ids.join('-')}`,
     });
 
+    log.info('apiResult.data', apiResult.data.topics[0].title);
+
     return {
       data: apiResult,
       // iteration loader must always implement eachItem,
@@ -18,11 +20,9 @@ async function load() {
         const topics = apiResult.data.topics;
         for (let i = 0, l = topics.length; i < l; i++) {
           const topic = topics[i];
-          log.info('topic.id', topic.id);
-
           clos({
             fullData: apiResult,
-            itemData: topic,
+            loaderData: { topic },
             pathSection: topic.id,
             length: l,
           });
