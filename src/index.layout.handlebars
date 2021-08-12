@@ -45,6 +45,10 @@
     {{#ifEnv "development"}}
     <script src="/dev/websocket.js"></script>
     {{/ifEnv}}
+    {{#ifEnv "production"}}
+    <script async src="https://beacon.fmh.de/scripts/beacon.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-15228411-1"></script>
+    {{/ifEnv}}
   </head>
   <body class="fmh-body">
     <input
