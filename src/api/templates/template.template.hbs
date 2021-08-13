@@ -1,19 +1,19 @@
-<article class="fmh-calc-intro fmh-body__calc-intro">
+<article class="fmh-calc-intro fmh-body__fmh-calc-intro">
   <hgroup class="fmh-calc-intro__hgroup">
     <h1 class="fmh-calc-intro__h1">
-      {{ preferredTitle loaderData.topic }}
+      {{{ preferredTitle loaderData.topic }}}
     </h1>
     <h2 class="fmh-calc-intro__h2">
-      {{ loaderData.topic.subtitle }}
+      {{{ loaderData.topic.subtitle }}}
     </h2>
   </hgroup>
   <div class="fmh-calc-intro__fmh-body-text fmh-body-text">
     {{{textile loaderData.topic.description}}}
   </div>
 </article>
-<section class="fmh-main fmh-main--fmh-calc fmh-body__fmh-main">
-  <h2 class="fmh-main__h2">
-    {{ loaderData.topic.title }}
+<section class="fmh-calc-frame fmh-body__fmh-calc-frame">
+  <h2 class="fmh-calc-frame__h2">
+    {{ interpolateDate loaderData.topic.title }}
   </h2>
-  <main class="fmh-calc fmh-main__fmh-calc">[CONTENT]</main>
+  <div class="fmh-calc-content fmh-calc-frame__fmh-calc-content">[CONTENT]</div>
 </section>

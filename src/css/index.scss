@@ -81,9 +81,6 @@ html {
     box-sizing: border-box;
   }
   &__fmh-main {
-    max-width: $content__max-width;
-    margin-left: auto;
-    margin-right: auto;
   }
   height: 100%;
   &__mobile-menu-state {
@@ -107,10 +104,15 @@ html {
   }
 }
 
-
-.fmh-calc-intro__hgroup, .fmh-calc-intro__fmh-body-text {
-  margin: 0 auto;
-  max-width: $content__max-width;
+.fmh-calc-intro {
+  padding-top: 1rem;
+  &__hgroup, &__fmh-body-text {
+    margin: 0 auto;
+  }
+  &__h1, &__h2 {
+    padding: 0;
+    margin: 0;
+  }
 }
 .fmh-header,
 .fmh-footer {
@@ -131,6 +133,9 @@ html {
 .fmh-footer__content {
   max-width: 1240px;
 }
+
+
+
 
 .fmh-global-info {
   &__flex-wrapper {
@@ -298,14 +303,15 @@ html {
 }
 
 .fmh-main {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+}
+
+.fmh-calc-frame {
+  max-width: $content__max-width;
+  margin: 2rem auto;
   padding: 0 1rem 1rem 1rem;
-  &--fmh-calc {
-    border-radius: 3px;
-    box-shadow: 0 3px 1px rgba(black, 0.2);
-    background-color: $color__primary--light;
-  }
+  border-radius: 3px;
+  box-shadow: 0 3px 1px rgba(black, 0.2);
+  background-color: $color__primary--light;
   &__h2 {
     font-size: 1.4rem;
     line-height: 1.4em; 
@@ -314,7 +320,7 @@ html {
     font-family: 'Roboto-Medium', arial, sans-serif;
     display: inline-block; 
   }
-  &__fmh-calc {
+  &__fmh-calc-content {
     border-radius: 3px;
     background-color: white;
     padding: 1rem;
@@ -414,8 +420,10 @@ html {
 .fmh-calc-intro {
   padding-bottom: 1rem;
   background-color: $color__primary--lighter;
-  &__hgroup {
-
+  &__hgroup, &__fmh-body-text {
+    max-width: $content__max-width;
+    margin-left: auto;
+    margin-right: auto;
   }
   &__h1, &__h2 {
     font-weight: normal;
@@ -429,6 +437,13 @@ html {
     color: white;
   }
   &__fmh-body-text {
+    a {
+      text-decoration: none;
+      color: $color__text--shiny;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
     p {
       font-family: 'Roboto-Medium', arial, sans-serif;
       color: white;
@@ -597,9 +612,9 @@ $footer-lineheight: 1.3em;
     }
   }
   .fmh-body {
-    &__fmh-main {
-      margin-left: 1rem;
-      margin-right: 1rem;
+    &__fmh-calc-intro {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 }
@@ -745,7 +760,7 @@ $footer-lineheight: 1.3em;
       // - move global info to third position
     }
     &__fmh-main {
-      padding-top: 6rem;
+      padding-top: 4.3rem;
     }
     &__mobile-menu-state {
       // when the toggle button is pressed

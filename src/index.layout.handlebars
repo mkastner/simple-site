@@ -37,17 +37,18 @@
     />
     <link href="/css/index.css" rel="stylesheet" />
     <script src="/index.js"></script>
-    <title>{{interpolateDate loaderData.topic.header_title}}</title>
+    <title>{{{interpolateDate loaderData.topic.header_title}}}</title>
     <meta name="keywords"
-        content="{{interpolateDate loaderData.topic.meta_keywords}}" />
+          content="{{{interpolateDate loaderData.topic.meta_keywords}}}" />
      <meta name="description"
-        content="{{interpolateDate loaderData.topic.meta_description}}" />
+           content="{{{interpolateDate loaderData.topic.meta_description}}}" />
     {{#ifEnv "development"}}
     <script src="/dev/websocket.js"></script>
     {{/ifEnv}}
     {{#ifEnv "production"}}
-    <script async src="https://beacon.fmh.de/scripts/beacon.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-15228411-1"></script>
+    <script defer src="https://beacon.fmh.de/scripts/beacon.js"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-15228411-1"></script>
+    <script defer src="/cookiecheck.js"></script>
     {{/ifEnv}}
   </head>
   <body class="fmh-body">
@@ -149,7 +150,9 @@
         {{/loaderData}}
       </nav>
     </header>
+    <main class="fmh-main fmh-body__fmh-main">
       {{{body}}}
+    </main> 
     <footer class="fmh-footer">
       <figure class="fmh-footer__background-figure">
         <img
@@ -219,5 +222,9 @@
         <a href="#fmh-top" class="fmh-footer__button">Nach oben</a>
       </div>
     </footer>
+    {{#ifEnv "production"}}
+      <div id="cookie-banner"><cookie-banner></cookie-banner></div>
+      <script defer src="/cookiebanner.js"></script>
+    {{/ifEnv}}
   </body>
 </html>
