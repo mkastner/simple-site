@@ -3,6 +3,7 @@ const log = require('mk-log');
 const ids = [
   230, // Hypothekenvergleich
   35, //Studenentkredit
+  /* 
   2526, //Forward-Darlehen Rechner
   4, //Forward-Darlehen Vergleich
   2530, //Forward-Darlehen Anbieter-Liste
@@ -50,6 +51,7 @@ const ids = [
   2199, // Zahlungsstrom-Rechner
   // Studentenkredit sh. Anfang
   34, // Autofinanzierung-Rechner
+  */
 ];
 
 async function load() {
