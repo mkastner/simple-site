@@ -134,7 +134,13 @@ html {
   max-width: 1240px;
 }
 
-
+.fmh-zzv {
+  display: block; 
+  height: 85px;
+  &__zinzen-zahlen-vergleiche {
+    transition: all 3s ease-in-out;
+  }
+}
 
 
 .fmh-global-info {
@@ -675,6 +681,9 @@ $footer-lineheight: 1.3em;
 }
 
 @media screen and (max-width: 960px) {
+  .fmh-zzv {
+    height: 45px;
+  }
   .fmh-header {
     //border: 1px solid red;
     // in mobile mode position needs to be absolute
@@ -933,6 +942,14 @@ $footer-lineheight: 1.3em;
   .fmh-footer { 
     &__background-image {
       margin-left: -10vw;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .fmh-zzv {
+    &__zinsen-zahlen-vergleiche {
+      display: none; 
     }
   }
 }
