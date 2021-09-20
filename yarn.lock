@@ -2376,9 +2376,9 @@ minizlib@^2.1.1:
   version "0.0.3"
   resolved "https://github.com/mkastner/mk-graceful-stat.git#173cb64bcbc12d9bd854cf157a0b5732f513b1e9"
 
-"mk-log@https://github.com/mkastner/mk-log.git#v0.0.12":
-  version "0.0.12"
-  resolved "https://github.com/mkastner/mk-log.git#b4df714a83fa4fc6a1136f6dfd43a20118b3a841"
+"mk-log@https://github.com/mkastner/mk-log.git#v0.0.13":
+  version "0.0.13"
+  resolved "https://github.com/mkastner/mk-log.git#48cd94b9392b1d2eec5c62efa414164cbdd8c86c"
   dependencies:
     colors "^1.3.3"
     tracer "^1.0.1"

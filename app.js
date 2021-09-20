@@ -1,13 +1,11 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const Path = require('path');
 const app = express();
 const port = 3010;
 const http = require('http');
 const log = require('mk-log');
 const buildAsset = require('./lib/utils/build-asset.js');
-const srcRootDir = Path.resolve('src');
 const handlebarsHelpers = require('./lib/utils/handlebars/helpers.js');
 const populatePathsStore = require('./lib/utils/populate-paths-store.js');
 const requireModule = require('./lib/utils/require-module.js');
@@ -17,15 +15,14 @@ const BuildPage = require('./lib/build/page.js');
 const PathsStore = require('./lib/utils/paths-store.js');
 const traverseDirectory = require('./lib/utils/traverse-directory.js');
 const globIntentPatterns = require('./lib/utils/glob-intent-patterns.js');
+const DirLocations = require('./lib/utils/dir-locations.js');
 
 const customConfig = mergeCustomConfigEnv(loadedCustomConfig);
 
 log.info('NODE_ENV', process.env.NODE_ENV);
 
-const absSrcDir = Path.resolve('src');
-
 const expressConfig = {
-  layoutsDir: absSrcDir,
+  layoutsDir: DirLocations.src.absolute,
   defaultLayout: 'index-layout',
   helpers: handlebarsHelpers,
 };
@@ -33,7 +30,7 @@ const expressConfig = {
 app.set('view engine', 'hbs');
 app.engine('hbs', exphbs(expressConfig));
 
-app.set('views', absSrcDir);
+app.set('views', DirLocations.src.absolute);
 
 /*
 app.use(
@@ -45,7 +42,7 @@ app.use(
 // route all assets to dist location
 const assetFilter =
   /\.(png|svg|js|js\.map|jpeg|jpg|json|css|css\.map|dist|xml|woff)$/;
-app.get(assetFilter, express.static(Path.resolve('dist')));
+app.get(assetFilter, express.static(DirLocations.dist.absolute));
 
 app.use('/dev/', express.static(__dirname + '/public/dev/'));
 
@@ -70,7 +67,7 @@ if (customConfig.routes && customConfig.routes.length) {
 }
 
 async function main() {
-  const traverse = traverseDirectory(srcRootDir);
+  const traverse = traverseDirectory(DirLocations.src.absolute);
   traverse.fileGlobPatterns = globIntentPatterns;
   traverse.event.addAsyncListener('file', populatePathsStore);
   traverse.event.addAsyncListener('dir', () => {});
@@ -87,9 +84,7 @@ async function main() {
       }
 
       const preferredIntents = pathsStore.pull(req.path);
-
       const buildPage = await BuildPage({
-        distRootDir: absSrcDir,
         uriPath: req.path,
         preferredIntents,
         itemIntents: pathsStore.paths.get(req.path),
@@ -109,7 +104,7 @@ async function main() {
 
   server.listen(port, () => {
     if (process.env.NODE_ENV === 'development') {
-      const srcRoot = 'src';
+      const srcRoot = DirLocations.src.basename;
       const watchedPaths = [`${srcRoot}/**/*.{hbs,handlebars,md,json,js,scss}`];
       const chokidar = require('chokidar');
       const watcher = chokidar.watch(watchedPaths);

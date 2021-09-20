@@ -1,5 +1,6 @@
 *.log
 .DS_Store
+.ignore
 deployment-config.sh
 node_modules
 dist/**/*

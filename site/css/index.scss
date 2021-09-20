@@ -104,6 +104,17 @@ html {
   }
 }
 
+.fmh-layout {
+  &__item {
+    &--1 { }
+    &--2 { }
+    &--3 { }
+    &--4 { }
+  } 
+}
+
+
+
 .fmh-calc-intro {
   padding-top: 1rem;
   &__hgroup, &__fmh-body-text {
