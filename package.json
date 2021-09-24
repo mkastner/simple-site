@@ -15,7 +15,6 @@
     "build-prod": "NODE_ENV=production yarn build-dev",
     "dev-site": "node ./bin/dev-site.js",
     "dev": "node app.js",
-    "clear-dist": "rm -fr dist/*",
     "build:awards": "yarn build:awards:css && yarn build:awards:views",
     "build:awards:css": "rimraf custom/awards/dist/css && node-sass -r custom/awards/src -o custom/awards/dist/css",
     "build:awards:remote-layout": "SIMPLESITE_NAME=awards node custom/awards/lib/layout-loader.js",
