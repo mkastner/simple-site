@@ -3,7 +3,6 @@ const log = require('mk-log');
 const ids = [
   230, // Hypothekenvergleich
   35, //Studenentkredit
-  /* 
   2526, //Forward-Darlehen Rechner
   4, //Forward-Darlehen Vergleich
   2530, //Forward-Darlehen Anbieter-Liste
@@ -51,7 +50,6 @@ const ids = [
   2199, // Zahlungsstrom-Rechner
   // Studentenkredit sh. Anfang
   34, // Autofinanzierung-Rechner
-  */
 ];
 
 async function load() {
@@ -60,7 +58,8 @@ async function load() {
       url: `https://www.fmh.de/api/topics/list-by-ids/${ids.join('-')}/100`,
     });
 
-    log.info('apiResult.data', apiResult.data.pagination);
+    log.info('apiResult.data', apiResult.data.topics[0].title);
+
     return {
       data: apiResult,
       // iteration loader must always implement eachItem,

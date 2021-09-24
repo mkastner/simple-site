@@ -5,12 +5,21 @@ $color__primary--lighter: #0c71b3;
 $color__primary--light: #00a0ec;
 $color__text--secondary: #1194db;
 $color__text--shiny: #5fd5ff;
-// $color__background--intro: #0c71b3;
+
 
 $color__text: #333;
+$color__headline: rgba(0,0,0,.87);
+
+
 $color__input--background: #f0f0f0;
 
+
 $content__max-width: 1160px;
+
+
+$font-family__headline:  'Roboto-Medium', arial, sans-serif;
+$font-family__abstract:  'Roboto-Normal', arial, sans-serif;
+$font-family__description:  'Roboto-Normal', arial, sans-serif;
 
 @mixin placeholder() {
   // expects next sibling to be placeholder
@@ -105,15 +114,40 @@ html {
 }
 
 .fmh-layout {
-  &__item {
-    &--1 { }
-    &--2 { }
-    &--3 { }
-    &--4 { }
-  } 
+  $margin: 1rem; 
+  max-width: $content__max-width;
+  display: flex;
+  flex-flow: row wrap;
+  margin: $margin; 
+  &__1 {
+  }
+  &__2 {
+    width: calc((#{$content__max-width} - (2 * #{$margin})) / 2);
+  }
+
 }
 
-
+.fmh-section {
+  &__title, &__abstract, &__description {
+    line-height: 1.2em; 
+    font-size: 1rem;
+  }
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    color: $color__headline;
+    font-family: $font-family__headline;
+  }
+  &__abstract {
+    color: $color__text;
+    font-family: $font-family__abstract;
+  }
+  &__description {
+    color: $color__text;
+    font-family: $font-family__description;
+  }
+}
 
 .fmh-calc-intro {
   padding-top: 1rem;
@@ -454,6 +488,7 @@ html {
     color: white;
   }
   &__fmh-body-text {
+    
     a {
       text-decoration: none;
       color: $color__text--shiny;
@@ -461,9 +496,19 @@ html {
         text-decoration: underline;
       }
     }
-    p {
+    p, li {
       font-family: 'Roboto-Medium', arial, sans-serif;
       color: white;
+    }
+    li {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      &:first-child {
+        margin-top: 0;
+      } 
+      &:last-child {
+        margin-bottom: 0;
+      } 
     }
   }
 }

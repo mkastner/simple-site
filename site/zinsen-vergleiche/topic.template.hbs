@@ -1,2 +1,38 @@
-{{loaderData.topic.title}}
-test test test
+<article class="fmh-calc-intro fmh-body__fmh-calc-intro">
+  <hgroup class="fmh-calc-intro__hgroup">
+    <h1 class="fmh-calc-intro__h1">
+      {{{ preferredTitle loaderData.topic }}}
+    </h1>
+    <h2 class="fmh-calc-intro__h2">
+      {{{ interpolateDate loaderData.topic.subtitle }}}
+    </h2>
+  </hgroup>
+  <div class="fmh-calc-intro__fmh-body-text fmh-body-text">
+    {{{textile loaderData.topic.abstract}}}
+  </div>
+  <div class="fmh-calc-intro__fmh-body-text fmh-body-text">
+    {{{textile loaderData.topic.description}}}
+  </div>
+</article>
+
+{{json loaderData.topic}}
+
+<div class="fmh-layout">
+  {{#each loaderData.segments}}
+    <{{tagName this 'tag_type'}} class="fmh-section fmh-layout__2">
+      <h3 class="fmh-section__title">
+        {{ this.title }}
+      </h3>
+      {{#ifShow this 'abstract'}}
+        <div class="fmh-section__abstract">
+          {{{ textFor this 'abstract' }}} 
+        </div>
+      {{/ifShow}}
+      {{#ifShow this 'description'}}
+        <div class="fmh-section__description">
+          {{{ textFor this 'description' }}} 
+        </div>
+        {{/ifShow}}
+    </{{tagName this 'tag_type'}}>
+  {{/each}}
+</div>

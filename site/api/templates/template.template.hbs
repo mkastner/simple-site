@@ -4,13 +4,14 @@
       {{{ preferredTitle loaderData.topic }}}
     </h1>
     <h2 class="fmh-calc-intro__h2">
-      {{{ loaderData.topic.subtitle }}}
+      {{{ interpolateDate loaderData.topic.subtitle }}}
     </h2>
   </hgroup>
   <div class="fmh-calc-intro__fmh-body-text fmh-body-text">
     {{{textile loaderData.topic.description}}}
   </div>
 </article>
+{{json topic}}
 <section class="fmh-calc-frame fmh-body__fmh-calc-frame">
   <h2 class="fmh-calc-frame__h2">
     {{ interpolateDate loaderData.topic.title }}
