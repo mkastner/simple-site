@@ -17,9 +17,17 @@
 
 {{json loaderData.topic}}
 
-<div class="fmh-layout">
+<div class="layout">
   {{#each loaderData.segments}}
-    <{{tagName this 'tag_type'}} class="fmh-section fmh-layout__2">
+  <{{tagName this 'tag_type'}} class="fmh-section {{this.namespace_not_heritable}}">
+      {{json this.documents}}
+      <div class="fmh-documents"> 
+        {{#eachDocument this.documents 'thumb'}}
+        <div>
+          title: {{this.title}}
+        </div> 
+        {{/eachDocument}}
+      </div>
       <h3 class="fmh-section__title">
         {{ this.title }}
       </h3>
@@ -32,7 +40,7 @@
         <div class="fmh-section__description">
           {{{ textFor this 'description' }}} 
         </div>
-        {{/ifShow}}
+      {{/ifShow}}
     </{{tagName this 'tag_type'}}>
   {{/each}}
 </div>

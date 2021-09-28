@@ -1,6 +1,6 @@
 {
   "name": "simple-site",
-  "version": "0.0.22",
+  "version": "0.0.24",
   "main": "app.js",
   "author": "John Galt <kastner@galt.de>",
   "license": "MIT",
@@ -66,8 +66,8 @@
     "nodemailer": "^6.4.11",
     "path-extra": "^4.3.0",
     "textile-js": "^2.1.1",
-    "ws": "^7.3.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "ws": "^8.2.2"
   },
   "devDependencies": {
     "eslint": "^7.12.1",

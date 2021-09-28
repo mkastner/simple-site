@@ -1,3 +1,4 @@
+/* eslint-env browser */
 (function () {
   // using handlebars as asset proprocesor
   if (FontFace === 'undefined') {

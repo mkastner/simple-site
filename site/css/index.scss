@@ -6,7 +6,6 @@ $color__primary--light: #00a0ec;
 $color__text--secondary: #1194db;
 $color__text--shiny: #5fd5ff;
 
-
 $color__text: #333;
 $color__headline: rgba(0,0,0,.87);
 
@@ -113,18 +112,38 @@ html {
   }
 }
 
-.fmh-layout {
+.layout {
   $margin: 1rem; 
   max-width: $content__max-width;
   display: flex;
   flex-flow: row wrap;
   margin: $margin; 
+  $item-margin: 1rem; 
+  &__separator {
+    height: 0px;
+    border: 0;
+    border-top: 1px solid red;
+  } 
   &__1 {
+    margin-top: $margin;
+    margin-bottom: $margin;
+    flex: calc((100% - (2 * #{$margin})) / 1) 1 1;
   }
   &__2 {
-    width: calc((#{$content__max-width} - (2 * #{$margin})) / 2);
+    margin-top: $margin;
+    margin-bottom: $margin;
+    flex: calc((50% - (2 * #{$margin})) / 2) 1 1;
   }
-
+  &__3 {
+    margin-top: $margin;
+    margin-bottom: $margin;
+    flex: calc((50% - (3 * #{$margin})) / 6) 1 1;
+  }
+  &__4 {
+    margin-top: $margin;
+    margin-bottom: $margin;
+    flex: calc((50% - (3 * #{$margin})) / 6) 1 1;
+  }
 }
 
 .fmh-section {

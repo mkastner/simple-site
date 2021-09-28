@@ -6,6 +6,10 @@ function camelize(s) {
   });
 }
 
+function preferredDocTitle(document) {
+  return document?.title || document?.paper?.title;
+}
+
 module.exports = {
   preferredTitle(topic) {
     return topic.page_title || topic.title;
@@ -32,7 +36,13 @@ module.exports = {
     return topic[textType];
   },
   tagName(topic, attrName) {
-    console.log(TopicConstants);
-    return TopicConstants.getVal('TagTypes', topic[attrName]);
+    return TopicConstants.getVal('TagTypes', topic[attrName]); 
   },
+  eachDocument(documents, size, options) {
+    let ret = '';
+    for (let i = 0, l = documents.length; i < l; i++) {
+      ret += options.fn({title: preferredDocTitle(documents[i])});
+    }
+    return ret;
+  } 
 };
