@@ -1,26 +1,32 @@
-{
-  "header": [
-    {
-      "label": "Kontakt",
-      "url": "https://www.fmh.de/contact"
-    },
-    { "label": "Für Banken", "url": "/" },
-    { "label": "Für Redaktionen", "url": "/fuer-redaktionen" },
-    { "label": "FAQ", "url": "/faq" },
-    { "label": "Über FMH", "url": "/wir-ueber-uns" }
-  ],
-  "footer": [
-    {
-      "label": "Kontakt",
-      "url": "https://www.fmh.de/contact"
-    },
-    { "label": "Für Banken", "url": "/" },
-    { "label": "Für Redaktionen", "url": "/fuer-redaktionen" },
-    { "label": "FAQ", "url": "/faq" },
-    { "label": "Über FMH", "url": "/wir-ueber-uns" },
-    { "label": "Impressum", "url": "/impressum"},
-    { "label": "AGB", "url": "/agb"},
-    { "label": "Datenschutz", "url": "/datenschutz"},
-    { "label": "ANB", "url": "/anb"}
-  ]
-}
+[
+  {
+    "label": "Home",
+    "key": "home", 
+    "url": "https://www.der-markt.com"
+  },
+  {
+    "label": "Tagesgeld",
+    "template": "/templates/tagesgeld",
+    "key": "tgv",
+    "url": "https://tagesgeld.der-markt.com/rechner/dermarkt/schnellcheck.aspx"
+  },
+  {
+    "label": "Festgeld",
+    "template": "/templates/festgeld",
+    "key": "fgv",
+    "url": "https://festgeld.der-markt.com/rechner/dermarkt/schnellcheck.aspx"
+  },
+  {
+    "label": "Hypotheken/Baugeld",
+    "template": "/templates/hypotheken",
+    "key": "hpv",
+    "url": "https://hypotheken.der-markt.com/rechner/dermarkt/schnellcheck.aspx"
+  },
+  {
+    "label": "Bausparen",
+    "template": "/templates/bausparen",
+    "key": "bsv",
+    "url": "https://bausparen.der-markt.com/dermarkt/schnellcheck.aspx"
+  }
+]
+

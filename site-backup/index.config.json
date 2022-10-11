@@ -1,0 +1,10 @@
+{
+  "base": {
+    "host": "https://www.fmh.de" 
+  },
+  "development": {
+    "host": "http://localhost:3010" 
+  },
+  "production": {},
+  "test": {}
+}

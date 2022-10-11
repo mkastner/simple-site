@@ -1,48 +1,21 @@
-const TopicConstants = require('./lib/topic-constants.js');
+// const AppTeaserDefs = require('../lib/app-teaser-defs.js');
 
-function camelize(s) {
-  return s.replace(/(?:^|_)(.)/, (_m, $1) => {
-    return $1.toUpperCase();
-  });
-}
-
-function preferredDocTitle(document) {
-  return document?.title || document?.paper?.title;
+function doubleDigitMonth(month) {
+  return ('0' + (month + 1)).slice(-2);
 }
 
 module.exports = {
-  preferredTitle(topic) {
-    return topic.page_title || topic.title;
+  fillIn(text) {
+    if (!text) {
+      return text;
+    }
+    const date = new Date();
+    const month = doubleDigitMonth(date.getMonth());
+    return text
+      .replace(/%%year%%/, date.getFullYear())
+      .replace(/%%month%%/, month);
   },
-  ifShow(topic, textType, options) {
-    if (textType === 'title' && !topic.hide_title_on_page) {
-      return options.fn(this);
-    }
-    if (
-      textType === 'abstract' &&
-      !topic.hide_abstract_on_page &&
-      topic.abstract
-    ) {
-      return options.fn(this);
-    }
-    if (textType === 'description' && topic.description) {
-      return options.fn(this);
-    }
+  checked(active) {
+    return active ? 'checked="true"' : '';
   },
-  textFor(topic, textType) {
-    if (topic[`${textType}_formatted`]) {
-      return topic[`formatted${camelize(textType)}`];
-    }
-    return topic[textType];
-  },
-  tagName(topic, attrName) {
-    return TopicConstants.getVal('TagTypes', topic[attrName]); 
-  },
-  eachDocument(documents, size, options) {
-    let ret = '';
-    for (let i = 0, l = documents.length; i < l; i++) {
-      ret += options.fn({title: preferredDocTitle(documents[i])});
-    }
-    return ret;
-  } 
 };

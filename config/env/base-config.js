@@ -1,4 +1,4 @@
 module.exports = {
   srcDir: 'site',
-  distDir: '../dist',
+  distDir: './dist',
 };

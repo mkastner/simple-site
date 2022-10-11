@@ -1,231 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />    
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=3,user-scalable=yes"
-    />
-    <link
-      rel="preload"
-      href="/fonts/Roboto-Thin.woff"
-      as="font"
-      type="font/woff"
-      crossorigin=""
-    />
-    <link
-      rel="preload"
-      href="/fonts/Roboto-Light.woff"
-      as="font"
-      type="font/woff"
-      crossorigin=""
-    />
-    <link
-      rel="preload"
-      href="/fonts/Roboto-Regular.woff"
-      as="font"
-      type="font/woff"
-      crossorigin=""
-    />
-    <link
-      rel="preload"
-      href="/fonts/Roboto-Medium.woff"
-      as="font"
-      type="font/woff"
-      crossorigin=""
-    />
+    <meta charset="utf-8">
+    <meta name="viewport" 
+        content="width=device-width,initial-scale=1,maximum-scale=3,user-scalable=yes"/>
+    <meta name="description" content="Die Zinsen">
+    <meta name="author" content="John Galt">
+    <!-- set by contentFor 'head' on page -->
     <link href="/css/index.css" rel="stylesheet" />
     <script src="/index.js"></script>
-    <title>{{{interpolateDate loaderData.topic.header_title}}}</title>
-    <meta name="keywords"
-          content="{{{interpolateDate loaderData.topic.meta_keywords}}}" />
-     <meta name="description"
-           content="{{{interpolateDate loaderData.topic.meta_description}}}" />
-    {{#ifEnv "development"}}
-    <script src="/dev/websocket.js"></script>
-    {{/ifEnv}}
-    {{#ifEnv "production"}}
-    <script defer src="https://beacon.fmh.de/scripts/beacon.js"></script>
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-15228411-1"></script>
-    <script defer src="/cookiecheck.js"></script>
-    {{/ifEnv}}
+    <title>{{{ block 'head:title' }}}</title>
   </head>
-  <body class="fmh-body">
-    <input
-      type="checkbox"
-      id="fmh-mobile-menu-state"
-      class="fmh-body__mobile-menu-state"
-    />
-    <label
-      for="fmh-mobile-menu-state"
-      class="fmh-body__mobile-menu-toggle"
-    ></label>
-    <header id="fmh-top" class="fmh-header fmh-body__fmh-header">
-      <figure class="fmh-logo-figure fmh-header__fmh-logo-figure">
-        <a href="https://www.fmh.de">
-          {{{includeInline '/fmh-zinsen-zahlen-vergleiche.svg'}}}
-          <!--img
-            class="fmh-header__fmh-logo"
-            loading="lazy"
-            src="/fmh-logo.svg"
-            srcset="/fmh-logo.svg 600w, /fmh-zinsen-zahlen-vergleiche.svg 601w"
-            alt="FMH Finanzberatung"
-          /-->
-        </a>
-      </figure>
-      <div class="fmh-global-info fmh-header__fmh-global-info">
-        <div class="fmh-global-info__flex-wrapper">
-          <nav class="fmh-legal-links fmh-global-info__fmh-legal-links">
-            <ul class="fmh-legal-links__list">
-              {{#each menu.header}}
-              <li class="fmh-legal-links__list-item">
-                <a
-                  href="{{ this.url }}"
-                  class="fmh-legal-links__list-link"
-                  title="{{ this.label }}"
-                  >{{ this.label }}</a
-                >
-              </li>
-              {{/each}}
-            </ul>
-          </nav>
-          <label class="fmh-search-label fmh-global-info__fmh-search-label">
-            <span class="fmh-magnify fmh-search-label__fmh-magnify"></span>
-            <input
-              placeholder=""
-              type="search"
-              class="fmh-search fmh-search-label__fmh-search"
-            />
-            <span class="fmh-placeholder fmh-search-label__fmh-placeholder">
-              Fragen Sie uns …
-            </span>
-          </label>
-        </div>
-      </div>
-      <nav class="fmh-nav fmh-header__fmh-nav">
-        <!-- loaderDate on each page for index passing pathsStore from from context-->
-        {{#loaderData '/index' pathsStore}} 
-        <ul class="fmh-menu fmh-nav__fmh-menu">
-          {{#each this.topLevel}}
-          <li class="fmh-menu__item">
-            <input
-              type="checkbox"
-              id="fmh-submenu-state-{{ this.id }}"
-              class="submenu-state fmh-nav__fmh-submenu-state"
-            />
-            <label
-              class="submenu-toggle fmh-nav__fmh-submenu-toggle"
-              for="fmh-submenu-state-{{ this.id }}"
-            >
-              <a
-                href="{{configVal config host}}{{ this.preferredPermalink }}"
-                title="{{ this.preferredLinkTitle }}"
-                class="fmh-menu__link"
-                >{{ this.title }}</a
-              >
-            </label>
-            <ul class="fmh-submenu fmh-nav__fmh-submenu">
-              <li class="fmh-submenu__item fmh-submenu__item--mobile">
-                <a
-                  href="{{ this.preferredPermalink }}"
-                  title="{{ this.preferredLinkTitle }}"
-                  class="fmh-submenu__link"
-                  >{{ this.title }}</a
-                >
-              </li>
-              {{#each this.children}}
-              <li class="fmh-submenu__item">
-                <a
-                  href="{{ this.preferredPermalink }}"
-                  title="{{ this.preferredLinkTitle }}"
-                  class="fmh-submenu__link"
-                  >{{ this.title }}</a
-                >
-              </li>
-              {{/each}}
-            </ul>
-          </li>
-          {{/each}}
-        </ul>
-        {{/loaderData}}
-      </nav>
+  <body class="dm-page">
+    <header class="dm-page__header">
+      <h1 class="dm-page__title">der-markt.com</h1>
     </header>
-    <main class="fmh-main fmh-body__fmh-main">
-      {{{body}}}
-    </main> 
-    <footer class="fmh-footer">
-      <figure class="fmh-footer__background-figure">
-        <img
-          class="fmh-footer__background-image"
-          loading="lazy"
-          src="/images/arrow-mobile.svg"
-          srcset="
-            /images/arrow-mobile.svg   800w,
-            /images/arrow-standard.svg 801w
-          "
-          alt="FMH Finanzberatung"
-        />
-      </figure>
-      <div class="fmh-footer__content">
-        <nav class="fmh-footer-nav fmh-footer__fmh-footer-nav">
-          {{#loaderData '/index' pathsStore}} 
-          <ul class="fmh-footer-nav__list">
-            {{#each this.topLevel}}
-            <li class="fmh-footer-nav__item">
-              <a
-                href="{{ configValconfighost }}{{ this.preferredPermalink }}"
-                title="{{ this.preferredLinkTitle }}"
-                class="fmh-footer-nav__link"
-                >{{ this.title }}</a
-              >
-              <ul class="fmh-footer-nav__sub-list">
-                {{#each this.children}}
-                <li class="fmh-footer-nav__sub-list-item">
-                  <a
-                    href="{{ this.preferredPermalink }}"
-                    title="{{ this.preferredLinkTitle }}"
-                    class="fmh-footer-nav__sub-list-link"
-                  >
-                    {{ this.title }}
-                  </a>
-                </li>
-                {{/each}}
-              </ul>
-            </li>
-            {{/each}}
-          </ul>
-          {{/loaderData}}
-        </nav>
-      </div>
-      <div class="fmh-footer__legal">
-        <p class="fmh-footer__p">© 2021, FMH-Finanzberatung e.K.</p>
-        <nav class="fmh-legal-footer-nav fmh-footer__fmh-legal-footer-nav">
-          <ul class="fmh-legal-footer-nav__list">
-            {{#each menu.footer}}
-            <li class="fmh-legal-footer-nav__item">
-              <a
-                href="{{ this.url }}"
-                class="fmh-legal-footer-nav__link"
-                title="{{ this.label }}"
-              >
-                {{ this.label }}
-              </a>
-            </li>
-            {{/each}}
-          </ul>
-        </nav>
-        <address class="fmh-footer__p fmh-footer__p--address">
-          FMH-Finanzberatung e.K.<br />
-          Zeil 13, D-60313 Frankfurt am Main<br />
-          Telefon 069/9518980 | Telefax 069/95189818
-        </address>
-        <a href="#fmh-top" class="fmh-footer__button">Nach oben</a>
-      </div>
+    <nav class="dm-nav">
+      <ul class="dm-nav__list">
+        {{#each menu}}
+          <li class="dm-nav__item">
+            <a
+              href="{{ this.url }}"
+              title="{{{ this.label }}}"
+              class="dm-nav__link {{this.key}}"
+              ><span>{{{ this.label }}}</span></a
+            >
+          </li>
+        {{/each}}
+      </ul>
+    </nav>
+    {{{body}}}
+    <footer class="dm-footer">
+      der-markt.com - Michael Kastner<br/>
+      Berliner Strasse 3<br/>
+      D-65439 Flörsheim<br/>
+      Telefon:  +49 (0)6145 / 938581<br/>
+      E-Mail: <a href="mailto:kastner@der-markt.com"
+        class="dm-link">
+        kastner@der-markt.com
+      </a><br/> 
     </footer>
-    {{#ifEnv "production"}}
-      <div id="cookie-banner"><cookie-banner></cookie-banner></div>
-      <script defer src="/cookiebanner.js"></script>
-    {{/ifEnv}}
   </body>
 </html>
+

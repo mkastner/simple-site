@@ -3,13 +3,13 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3010;
+const Path = require('path');
 const http = require('http');
 const log = require('mk-log');
 const buildAsset = require('./lib/utils/build-asset.js');
 const handlebarsHelpers = require('./lib/utils/handlebars/helpers.js');
 const populatePathsStore = require('./lib/utils/populate-paths-store.js');
 const requireModule = require('./lib/utils/require-module.js');
-const loadedCustomConfig = requireModule('./src/index-config.json');
 const mergeCustomConfigEnv = require('./lib/utils/merge-custom-config-env.js');
 const BuildPage = require('./lib/build/page.js');
 const PathsStore = require('./lib/utils/paths-store.js');
@@ -17,6 +17,9 @@ const traverseDirectory = require('./lib/utils/traverse-directory.js');
 const globIntentPatterns = require('./lib/utils/glob-intent-patterns.js');
 const DirLocations = require('./lib/utils/dir-locations.js');
 
+const loadedCustomConfig = requireModule(
+  Path.join(DirLocations.src.absolute, 'index.config.json')
+);
 const customConfig = mergeCustomConfigEnv(loadedCustomConfig);
 
 log.info('NODE_ENV', process.env.NODE_ENV);
