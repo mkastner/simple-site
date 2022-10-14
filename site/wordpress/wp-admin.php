@@ -18,7 +18,7 @@
   <p class="forgetmenot"><input name="rememberme" type="checkbox" id="rememberme" value="forever"> <label for="rememberme">Angemeldet bleiben</label></p>
   <p class="submit">
   <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Anmelden">
-  <input type="hidden" name="redirect_to" value="https://axelkra.us/wp-admin/">
+  <input type="hidden" name="redirect_to" value="/wordpress/wp-admin.php">
   <input type="hidden" name="testcookie" value="1">
   </p>
 </form>
