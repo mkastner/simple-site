@@ -1,0 +1,20 @@
+{
+  "singleQuote": true,
+  "prettier.onlyUseLocalVersion": false,
+  "prettier.arrowParens": "always",
+  "overrides": [
+    {
+      "files": [
+        "**/*.css",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.html",
+        "**/*.hbs",
+        "**/*.handlebars"
+      ],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}
