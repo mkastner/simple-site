@@ -1,6 +1,6 @@
 {
   "name": "simple-site",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "main": "app.js",
   "author": "John Galt <kastner@galt.de>",
   "license": "MIT",
@@ -42,6 +42,7 @@
     "test:utils:move-path-down": "NODE_ENV=test SIMPLESITE_NAME=demo node test/lib/utils/move-path-down.test.js",
     "test:utils:traverse-directory": "NODE_ENV=test node test/lib/utils/traverse-directory.test.js",
     "test:utils:file-stem": "NODE_ENV=test SIMPLESITE_NAME=demo node test/lib/utils/file-stem.test.js",
+    "test:utils:partial-paths": "NODE_ENV=test SIMPLESITE_NAME=demo node test/lib/utils/partial-paths.test.js",
     "watch-css:awards": "node-sass -r custom/awards/scss -wo custom/awards/dist/css",
     "watch-css:demo": "node-sass -r custom/demo/scss -wo custom/demo/dist/css",
     "watch-css:khe": "node-sass -r custom/khe/scss -wo custom/khe/dist/css"

@@ -2,7 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3010;
+const port = process.env.PORT || 3010;
 const Path = require('path');
 const http = require('http');
 const log = require('mk-log');
@@ -16,6 +16,7 @@ const PathsStore = require('./lib/utils/paths-store.js');
 const traverseDirectory = require('./lib/utils/traverse-directory.js');
 const globIntentPatterns = require('./lib/utils/glob-intent-patterns.js');
 const DirLocations = require('./lib/utils/dir-locations.js');
+const PartialPaths = require('./lib/utils/partial-paths.js');
 
 const loadedCustomConfig = requireModule(
   Path.join(DirLocations.src.absolute, 'index.config.json')
@@ -76,6 +77,7 @@ async function main() {
   traverse.event.addAsyncListener('dir', () => {});
   await traverse.runAsync();
   const pathsStore = PathsStore.getInstance();
+  const partialPaths = await PartialPaths(DirLocations.src.absolute);
 
   app.get('/*', async (req, res) => {
     try {
@@ -92,6 +94,7 @@ async function main() {
         preferredIntents,
         itemIntents: pathsStore.paths.get(req.path),
         pathsStore,
+        partials: partialPaths.partials
       });
 
       const page = buildPage.toString();
