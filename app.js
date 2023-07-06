@@ -44,6 +44,8 @@ app.use(
 */
 
 // route all assets to dist location
+// therefore we need to make sure that all assets are
+// already built to dist location
 const assetFilter =
   /\.(png|svg|js|js\.map|jpeg|jpg|json|css|css\.map|dist|xml|woff)$/;
 app.get(assetFilter, express.static(DirLocations.dist.absolute));
@@ -94,8 +96,11 @@ async function main() {
         preferredIntents,
         itemIntents: pathsStore.paths.get(req.path),
         pathsStore,
-        partials: partialPaths.partials
+        partials: partialPaths.partials,
       });
+
+      log.info('buildPage:', req.path);
+      log.info('buildPage:', buildPage);
 
       const page = buildPage.toString();
 
