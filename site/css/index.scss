@@ -7,6 +7,38 @@
 
 @import "site/css/fonts.scss";
 
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/fonts/Roboto-Thin.woff") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Roboto-Light.woff") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Roboto-Regular.woff") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Roboto-Medium.woff") format("woff2");
+}
+
 :root {
   --color__primary--light: #ffe6ba;
   --color__primary--lighter: #ffd760;
@@ -31,6 +63,12 @@
   --font-size__big: calc(var(--font-size__medium) * 1.3);
   --font-size__large: calc(var(--font-size__big) * 1.3);
   --flex-gap: 0.5rem;
+  --font-family__test: "Roboto", arial, helvetica, sans-serif;
+}
+
+.font-test {
+  font-family: "Roboto"; // var(--font-family__test);
+  font-weight: 500;
 }
 
 .dm-page {

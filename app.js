@@ -48,7 +48,11 @@ app.use(
 // already built to dist location
 const assetFilter =
   /\.(png|svg|js|js\.map|jpeg|jpg|json|css|css\.map|dist|xml|woff)$/;
-app.get(assetFilter, express.static(DirLocations.dist.absolute));
+
+app.get(assetFilter, (req, res, next) => {
+  log.info('assetFilter', req.path);
+  return express.static(DirLocations.dist.absolute)(req, res, next);
+});
 
 app.use('/dev/', express.static(__dirname + '/public/dev/'));
 
